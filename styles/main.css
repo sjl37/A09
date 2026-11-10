@@ -1,0 +1,182 @@
+/* custom property */
+:root {
+	--accent-color: #800000;  /* could also be coded #800 */
+	--gradient-color: #f6bb73;
+}
+
+/* reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* default styles */
+body {
+	font-family: Arial, Helvetica, sans-serif;
+    font-size: calc(15px + .2vw);
+	width: min(80%, 1024px);
+	line-height: 1.5;
+	margin: auto;
+	border: 2px solid var(--accent-color);
+}
+h1, h2, h3, p, ul {
+	padding: .25em 0;
+}
+a:hover, a:focus{
+	font-style: italic;
+	color: var(--accent-color);
+}
+h1 {
+	font-size: 150%;
+}
+h2 {
+	font-size: 130%;
+	color: var(--accent-color);
+}
+h3 {
+	font-size: 105%;
+}
+ul {
+	margin-left: 2em;
+}
+
+/* the styles for the header */
+header {
+	line-height: 1.2;
+	border-bottom: 2px solid var(--accent-color);
+	background-image: linear-gradient(
+	    30deg, var(--gradient-color) 0%, white 30%, white 65%, var(--gradient-color) 100%);
+	& h2 {
+		font-size: 175%;
+		padding: .5em 0 0 0;
+	}
+	& h3 {
+		font-size: 130%;
+		font-style: italic;
+		padding-bottom: 1em;
+	}
+	& img {
+		width: clamp(40px, 15%, 80px);
+		float: left;
+		margin: .75em 1em;
+	}
+}
+
+/* the styles for the main content */
+main {
+	display: flex;
+	clear: left;
+	padding: 0 1em 1em;
+	& blockquote {
+		font-style: italic;
+		padding-left: 1em;
+	}
+	& h3 + img { /* speaker images */
+		width: clamp(40px, 50%, 75px);
+		border: 4px double var(--accent-color);
+		border-radius: 10px;
+	}
+}
+
+/* the styles for the section */
+section {
+	flex-basis: 75%;
+	padding-left: .5em;
+	& img {
+		width: clamp(100px, 50%, 250px);
+		float: right;
+		margin: 0 1em .25em;
+	}
+}
+
+/* the styles for the aside */
+aside {
+	flex-basis: 25%;
+	padding-right: .5em;
+}
+
+/* the styles for the footer */
+footer {
+	background-color: var(--accent-color);
+	& p {
+		text-align: center;
+		color: white;
+		padding: 1em 0;
+	}
+}
+
+/* CSS class */
+.featured {
+	border-top: 2px solid var(--accent-color);
+	border-bottom: 2px solid var(--accent-color);
+	padding: .5em 0 1em;
+}
+.speaker {
+	& h1 {
+		color: var(--accent-color);
+	}
+	& h2 {
+		color: black;
+	}
+	& p {
+		padding: .5em 0; 
+	}	
+}
+.large {
+	font-size: 125%;
+}
+
+/* Chapter 7: Exercise 7-1 - flexbox navigation */
+:root {
+    --menu-light: #fff;
+    --menu-mid: antiquewhite;
+    --menu-dark: #333;
+}
+.navbar {
+    background-color: var(--accent-color);
+}
+.navbar ul { margin: 0; padding: 0; list-style: none; }
+.menu { display: flex; flex-wrap: wrap; }
+.menu > li { flex-basis: 20%; text-align: center; min-width: 0; }
+.navbar a {
+    display: block;
+    padding: 1em;
+    margin: 0 1px 2px;
+    color: var(--menu-light);
+    text-decoration: none;
+    font-style: normal;
+}
+.navbar a:hover,
+.navbar a:focus,
+.navbar a.current,
+.has-submenu:focus-within > a {
+    background-color: var(--menu-mid);
+    color: var(--menu-dark);
+}
+/* Chapter 7: Exercise 7-2 - dropdown submenus */
+.has-submenu { position: relative; }
+.has-submenu small { margin-left: .35em; font-size: .65em; }
+.navbar .submenu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    background-color: var(--accent-color);
+    color: var(--menu-light);
+    display: none;
+    box-shadow: 0 3px 5px rgba(0,0,0,.2);
+}
+.has-submenu:hover > .submenu,
+.has-submenu:focus-within > .submenu { display: block; }
+.submenu > li a { margin: 0 2px 2px; }
+.menu > li:first-child > a { margin-left: 0; }
+.menu > li:last-child > a { margin-right: 0; }
+@media (max-width: 520px) {
+    body { width: 96%; }
+    .menu > li { flex: 1 1 33.333%; }
+    .navbar a { padding: .75em .3em; }
+    .has-submenu .submenu { min-width: 130px; }
+    main { padding: .5em; }
+}
